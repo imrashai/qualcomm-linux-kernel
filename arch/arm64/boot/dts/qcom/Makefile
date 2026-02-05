@@ -50,6 +50,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
 
 monaco-evk-camx-dtbs   := monaco-evk.dtb monaco-evk-camx.dtbo
+monaco-evk-el2-dtbs := monaco-evk.dtb monaco-el2.dtbo
+
+dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk-el2.dtb
+
 monaco-evk-camera-imx577-dtbs	:= monaco-evk.dtb monaco-evk-camera-imx577.dtbo
 
 dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk-camera-imx577.dtb
@@ -171,6 +175,9 @@ qcs8300-ride-camx-dtbs:= qcs8300-ride.dtb qcs8300-ride-camx.dtbo
 
 dtb-$(CONFIG_ARCH_QCOM) += qcs8300-ride-camx.dtb
 
+qcs8300-ride-el2-dtbs := qcs8300-ride.dtb monaco-el2.dtbo
+
+dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride-el2.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
 
