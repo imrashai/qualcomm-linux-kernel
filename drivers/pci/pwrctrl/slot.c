@@ -66,21 +66,25 @@ static int pci_pwrctrl_slot_probe(struct platform_device *pdev)
 
 	ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
 					&slot->supplies);
-	if (ret < 0) {
-		dev_err_probe(dev, ret, "Failed to get slot regulators\n");
-		return ret;
-	}
+	if (ret < 0)
+		return dev_err_probe(dev, ret, "Failed to get slot regulators\n");
 
 	slot->num_supplies = ret;
+
+	ret = regulator_bulk_enable(slot->num_supplies, slot->supplies);
+	if (ret < 0) {
+		regulator_bulk_free(slot->num_supplies, slot->supplies);
+		return dev_err_probe(dev, ret, "Failed to enable slot regulators\n");
+	}
 
 	ret = devm_add_action_or_reset(dev, devm_pci_pwrctrl_slot_release,
 				       slot);
 	if (ret)
 		return ret;
 
-	slot->clk = devm_clk_get_optional(dev, NULL);
-	if (IS_ERR(slot->clk))
-		return dev_err_probe(dev, PTR_ERR(slot->clk),
+	clk = devm_clk_get_optional_enabled(dev, NULL);
+	if (IS_ERR(clk))
+		return dev_err_probe(dev, PTR_ERR(clk),
 				     "Failed to enable slot clock\n");
 
 	slot->pwrctrl.power_on = pci_pwrctrl_slot_power_on;
