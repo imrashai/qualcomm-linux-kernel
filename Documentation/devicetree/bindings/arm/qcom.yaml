@@ -63,6 +63,11 @@ properties:
 
       - items:
           - enum:
+              - qcom,glymur-crd
+          - const: qcom,glymur
+
+      - items:
+          - enum:
               - fairphone,fp6
           - const: qcom,milos
 
@@ -883,6 +888,7 @@ properties:
       - items:
           - enum:
               - qcom,qcs615-ride
+              - qcom,talos-evk
           - const: qcom,qcs615
           - const: qcom,sm6150
 
@@ -1073,6 +1079,12 @@ properties:
               - qcom,x1e001de-devkit
           - const: qcom,x1e001de
           - const: qcom,x1e80100
+
+      - items:
+          - enum:
+              - qcom,purwa-iot-evk
+          - const: qcom,purwa-iot-som
+          - const: qcom,x1p42100
 
       - items:
           - enum:
